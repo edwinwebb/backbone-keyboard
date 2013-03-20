@@ -24,7 +24,7 @@ Backbone.View.Keyboard = Backbone.View.extend({
         },
         { 
           id : 'backspace',
-          label : 'backspace',
+          label : 'del',
           action : function(str) {return str.slice(0,-1);}
         }
       ]

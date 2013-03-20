@@ -1,0 +1,45 @@
+#wrap {
+  width:60em;
+  margin:5em auto;
+  background:grey;
+}
+
+input {
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  border:3px solid grey;
+  line-height:60px;
+  font-size:30px;
+  text-indent:1em;
+}
+
+#keyboard {
+  display: block;
+  height: 20em;
+  text-align: center;
+  padding: 2em 0;
+  font-family:helvetica, arial, sans;
+}
+
+#keyboard .key {
+  display: inline-block;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  font-size: 30px;
+  background: #333;
+  color: #ffffff;
+  margin: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#keyboard .key[data-action] {
+  width: auto;
+  padding: 0 1em;
+}
+
+#keyboard .key:active {
+  background: green;
+}

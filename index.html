@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Backbone Keyboard</title>
+  <link rel="stylesheet" href="css/style.css" media="screen">
+</head>
+<body>
+  <div id='wrap'>
+    <input type='text' class='keyboard' placeholder="Basic Keyboard" />
+    <div id='keyboard'></div>
+  <div>
+
+  <script src="libs/jquery/jquery.js"></script>
+  <script src="libs/underscore/underscore.js"></script>
+  <script src="libs/backbone/backbone.js"></script>
+  <script src="src/backbone-keyboard.js"></script>
+  <script>
+    var kb = new Backbone.View.Keyboard({
+      "el" : '#keyboard'
+    });
+  </script>
+
+</body>
+</html>
