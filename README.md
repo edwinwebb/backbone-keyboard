@@ -1,6 +1,6 @@
 # Backbone Keyboard
 
-Onscreen HTML5 keyobard
+A basic on-screen HTML5 / JS keyboard for kiosk style devices
 
 ## Getting Started
 Download the [production version][min] or the [development version][max].
