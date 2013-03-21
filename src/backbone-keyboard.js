@@ -35,7 +35,8 @@ Backbone.View.Keyboard = Backbone.View.extend({
       ]
     ],
     //the target input element 
-    targetSelector : 'input.keyboard'
+    targetSelector : 'input.keyboard',
+    maxlength : 999,
   },
 
   //will be populated with options.targetSelector
@@ -125,22 +126,26 @@ Backbone.View.Keyboard = Backbone.View.extend({
 
   keyHandler : function(keyEl) {
 
-    var val = this.targ.val() || "";
+    var val = this.targ.val() || "";    
 
     if(keyEl.hasAttribute('data-action')) {
       this.targ.val(this.actions[keyEl.getAttribute('data-action')](val));
     } else {
+      if(val.length > this.options.maxlength) return false;
       this.addChar(keyEl.innerText);  
     }
   },
 
   //sets the keyboards target element
+  //curretly must be input
   //public
   setTarget : function(target) {
     var targ = target;
 
     if(targ.length === 0) {
       console.warn('no keyboard target found');
+    } else if(targ.attr('maxlength')) {
+      this.options.maxlength = parseInt(targ.attr('maxlength'));
     }
 
     this.targ = targ;
