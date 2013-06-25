@@ -7,17 +7,46 @@
 </head>
 <body>
   <div id='wrap'>
-    <input type='text' class='keyboard' placeholder="Basic Keyboard" />
+    <div id="text"><input type='text' class='keyboard' placeholder="Basic Keyboard" /></div>
     <div id='keyboard'></div>
   <div>
 
   <script src="libs/jquery/jquery.js"></script>
   <script src="libs/underscore/underscore.js"></script>
   <script src="libs/backbone/backbone.js"></script>
-  <script src="src/backbone-keyboard.js"></script>
+  <script src="dist/backbone-keyboard.js"></script>
   <script>
     var kb = new Backbone.View.Keyboard({
-      "el" : '#keyboard'
+      "el" : '#keyboard',
+        keys : [
+          //3 rows of alpha keys
+          ['q','w','e','r','t','y','u','i','o','p'],
+          ['a','s','d','f','g', 'h','j','k','l'],
+          [
+            // { 
+            //   id : 'shift',
+            //   label : '&#x21E7;'
+            // },
+            '.','z','x','c','v','b','n','m',','],
+          [
+            { 
+              id : 'clear',
+              label : 'clear',
+              action : function() {return '';}
+            },
+            {
+              id : 'space',
+              label : 'space',
+              action : function(str) {return str += " ";}
+            },
+            { 
+              id : 'backspace',
+              label : '&#x232b;',
+              action : function(str) {return str.slice(0,-1);}
+            }
+          ]
+        ],
+      
     });
   </script>
 
