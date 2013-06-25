@@ -35,17 +35,37 @@ Backbone.View.Keyboard = Backbone.View.extend({
       ]
     ],
     //the target input element 
-    targetSelector : 'input.keyboard'
+    targetSelector : 'input.keyboard',
+    maxlength : 999,
   },
 
   //will be populated with options.targetSelector
   targ : undefined,
+  
   //will be poulated with the actions from special keys
   actions : {},
 
+  //enable touch events
+  isTouch : (function() {
+    try {
+     document.createEvent("TouchEvent");
+     return true;
+    } catch (e) {
+     return false;
+    }
+  }()),
+
   //click a key
-  events : {
-    'click .key' : 'clickHandler'
+  events : function() {
+    if(this.isTouch) {
+      return {
+        'touchstart .key' : 'touchStartHandler',
+      }
+    } else {
+      return {
+        'click .key' : 'clickHandler',
+      }
+    }
   },
 
   //merge options and auto-render
@@ -86,27 +106,46 @@ Backbone.View.Keyboard = Backbone.View.extend({
   //click on a .key
   clickHandler : function(e) {
 
-    var targ = e.currentTarget;
-    var val = this.targ.val() || "";
-
-    //if special, look up the action and apply it to val
-    if(targ.hasAttribute('data-action')) {
-      this.targ.val(this.actions[targ.getAttribute('data-action')](val));
-    } else {
-      this.addChar(e.currentTarget.innerText);  
-    }
+    var targ = e.currentTarget;  
 
     e.preventDefault();
 
+    this.keyHandler(targ);
+
+  },
+
+  touchStartHandler : function(e) {
+    var touches = e.originalEvent.targetTouches;
+
+    var val = this.targ.val() || "";
+
+    _.each(e.originalEvent.targetTouches, function(touch) {
+      this.keyHandler(touch.target);
+    }, this);
+  },
+
+  keyHandler : function(keyEl) {
+
+    var val = this.targ.val() || "";    
+
+    if(keyEl.hasAttribute('data-action')) {
+      this.targ.val(this.actions[keyEl.getAttribute('data-action')](val));
+    } else {
+      if(val.length > this.options.maxlength) return false;
+      this.addChar(keyEl.innerText);  
+    }
   },
 
   //sets the keyboards target element
+  //curretly must be input
   //public
   setTarget : function(target) {
     var targ = target;
 
     if(targ.length === 0) {
       console.warn('no keyboard target found');
+    } else if(targ.attr('maxlength')) {
+      this.options.maxlength = parseInt(targ.attr('maxlength'));
     }
 
     this.targ = targ;
