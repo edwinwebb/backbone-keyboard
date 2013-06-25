@@ -7,6 +7,7 @@ Download the [production version][min] or the [development version][max].
 
 [min]: https://raw.github.com/edwin/backbone-keyboard/master/dist/backbone-keyboard.min.js
 [max]: https://raw.github.com/edwin/backbone-keyboard/master/dist/backbone-keyboard.js
+[demo]: http://edwinwebb.github.io/backbone-keyboard/
 
 In your web page:
 
@@ -53,8 +54,9 @@ In your web page:
   }
 ```
 
-## Examples
-_(Coming soon)_
+## Demo
+[See the demo on gh-pages][demo]
 
 ## Release History
 0.1.0 - First release, basic keyboard and special keys. 
+0.1.1 - Added demo 
