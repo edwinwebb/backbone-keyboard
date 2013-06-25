@@ -38,7 +38,8 @@
   });
 
   test('keypress', function() {
-    expect(3);    
+    expect(3);
+    this.input.val('');
     $('#keyboard').find('.key').eq(0).click();    
     equal(this.input.val().length, 1, 'letter written');
     $('#keyboard').find('.key').eq(1).click(); 

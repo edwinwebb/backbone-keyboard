@@ -1,4 +1,4 @@
-/*! Backbone Keyboard - v0.1.0 - 2013-03-20
+/*! Backbone Keyboard - v0.1.0 - 2013-06-25
 * https://github.com/edwin/backbone-keyboard
 * Copyright (c) 2013 Edwin Webb; Licensed MIT */
 Backbone.View.Keyboard = Backbone.View.extend({
@@ -24,7 +24,7 @@ Backbone.View.Keyboard = Backbone.View.extend({
         },
         { 
           id : 'backspace',
-          label : 'backspace',
+          label : 'del',
           action : function(str) {return str.slice(0,-1);}
         }
       ]
